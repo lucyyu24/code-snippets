@@ -27,14 +27,14 @@ function order_summary(order_object) {
     dict["Order total"] = price_str(price + tax);
  
     // generate final html
-    html = generate_html_tag("h1", "Order summary"); 
+    html = html_tag("h1", "Order summary"); 
     var headings = ["Product", "Subtotal", "Tax", "Order total"]; 
     // iterate over headings to print out, this is better than hard-coding and easier for making changes to the headings later, etc.
     // using the headings array because it makes sense for the headings to be ordered in this case
     // we can eliminate the headings array if we implement ordered dict, something like this: http://stackoverflow.com/questions/2798893/ordered-hash-in-javascript
     for (var i in headings) {
         var heading = headings[i]; 
-        html += generate_key_value_paragraph(heading, dict[heading]);
+        html += key_value_paragraph(heading, dict[heading]);
     }
     
     document.write(html);
@@ -48,12 +48,12 @@ function price_str(price) {
 
 // generates key value paragraph tag of the form:
 // <p>key: value</p>
-function generate_key_value_paragraph(key, val) {
+function key_value_paragraph(key, val) {
     return generate_html_tag('p', key + ": " + val);
 }
 
-// accepts tag and content to generate html tag of the form: 
+// generate html tag of the form: 
 // <tag>content</tag>
-function generate_html_tag(tag, content) {
+function html_tag(tag, content) {
     return "<" + tag + ">" + content + "</" + tag + ">";
 }
